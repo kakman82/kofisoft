@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/img/logo-fav.png">
+    <title>KofiSoft</title>
+    <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+    <script src="https://www.google.com/recaptcha/api.js?hl=tr"></script>
+</head>
+
+<body class="be-splash-screen">
+<div class="be-wrapper be-login be-signup">
+    <div class="be-content">
+        <div class="main-content container-fluid">
+            <div class="splash-container sign-up">
+                <div class="panel panel-default panel-border-color panel-border-color-primary">
+                    <div class="panel-heading"><img src="assets/img/logo-xx.png" alt="logo" width="102" height="27"
+                                                    class="logo-img"><span class="splash-description">Lütfen gerekli bilgileri giriniz.</span>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ url_for('register') }}" method="POST" data-parsley-validate="" novalidate="">
+                            {{ form.csrf_token }}
+                            <span class="splash-title xs-pb-20">Kayıt Ol</span>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    {{ form.company_name(**{"class":"form-control", "placeholder":"Firma Adı" }) }}
+                                    {% for error in form.company_name.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-8">
+                                    {{ form.name(**{"class":"form-control", "placeholder":"Ad ve Soyad" }) }}
+                                    {% for error in form.name.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-sm-4">
+                                    {{ form.role(class="form-control") }}
+                                    {% for error in form.role.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}.</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    {{ form.email(**{"class":"form-control", "placeholder":"Email" }) }}
+                                    {% for error in form.email.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ form.mobile_phone(**{"data-mask":"phone", "class":"form-control", "placeholder":"Telefon: 0 (999) 999-9999" }) }}
+                                {% for error in form.mobile_phone.errors %}
+                                <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                    <li class="parsley-required">{{ error }}</li>
+                                </ul>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group row signup-password">
+                                <div class="col-xs-6">
+                                    {{ form.password(**{"class":"form-control", "placeholder":"Şifre" }) }}
+                                    {% for error in form.password.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-xs-6">
+                                    {{ form.confirm(**{"class":"form-control", "placeholder":"Şifre (Tekrar)" }) }}
+                                    {% for error in form.confirm.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group xs-pt-10">
+                                <div class="be-checkbox">
+                                    {{ form.sales_doc(**{"type":"checkbox", "id":"remember" }) }}
+                                    <label for="remember"><a href="#">Satış sözleşmesini </a>kabul ediyorum.</label>
+                                    {% for error in form.sales_doc.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {{ form.recaptcha(**{"class":"g-recaptcha", "data-sitekey":"6LeihtwUAAAAAMQRwK1K3FUdAYeoRbLxNIMSV9F9" }) }}
+                                {% for error in form.recaptcha.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}</li>
+                                    </ul>
+                                {% endfor %}
+                            <div class="form-group xs-pt-10">
+                                <button type="submit" class="btn btn-block btn-primary btn-xl"> Kayıt Ol</button>
+                            </div>
+                            <div class="splash-footer"><span> Zaten bir hesabınız var mı? <a
+                                    href="{{ url_for('login') }}">Giriş Yapın!</a></span></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="splash-footer">&copy; 2020 KofiProjects</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/main.js" type="text/javascript"></script>
+<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/lib/jquery.maskedinput/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="assets/js/app-form-masks.js" type="text/javascript"></script>
+<script type="text/javascript">
+      $(document).ready(function(){
+      	//initialize the javascript
+      	App.init();
+      	App.masks();
+      });
+
+</script>
+</body>
+</html>

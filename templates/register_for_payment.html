@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/img/logo-fav.png">
+    <title>KofiSoft Ödeme</title>
+    <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="assets/lib/select2/css/select2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap-slider/css/bootstrap-slider.css"/>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+</head>
+<body>
+
+<div class="be-wrapper">
+    <div class="be-content">
+        <div class="main-content container-fluid">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading"><img src="assets/img/logo-xx.png" alt="logo" width="102" height="27"
+                                                class="logo-img"><span class="splash-description">Lütfen gerekli bilgileri giriniz.</span>
+                </div>
+                <div class="row wizard-row">
+                    {{ form.csrf_token }}
+                    <div class="col-md-12 fuelux">
+                        <div class="block-wizard panel panel-default">
+                            {% with messages = get_flashed_messages(with_categories=True) %}
+                            {% if messages %}
+                            {% for category, message in messages %}
+                            <div role="alert" class="alert alert-contrast alert-{{ category }} alert-dismissible">
+                                <div class="icon"><span class="mdi mdi-close-circle-o"></span></div>
+                                <div class="message">
+                                    <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                                            aria-hidden="true" class="mdi mdi-close"></span></button>
+                                    <strong>Uyarı!</strong> {{ message }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                            <div id="wizard1" class="wizard wizard-ux">
+                                <ul class="steps">
+                                    <li data-step="1" class="active">Firma Bilgileri<span class="chevron"></span>
+                                    </li>
+                                    <li data-step="2">Kullanıcı Giriş Bilgileri<span class="chevron"></span></li>
+                                    <li data-step="3">Ödeme ve Kayıt<span class="chevron"></span></li>
+                                </ul>
+                                <div class="actions">
+                                    <button type="button" class="btn btn-xs btn-prev btn-default"><i
+                                            class="icon mdi mdi-chevron-left"></i>Geri
+                                    </button>
+                                    <button type="button" data-last="Bitiş"
+                                            class="btn btn-xs btn-next btn-default">İleri<i
+                                            class="icon mdi mdi-chevron-right"></i></button>
+                                </div>
+                                <div class="step-content">
+                                    <div data-step="1" class="step-pane active">
+                                        <form action="{{ url_for('register') }}" method="post"
+                                              data-parsley-namespace="data-parsley-"
+                                              data-parsley-validate=""
+                                              novalidate="" class="form-horizontal group-border-dashed">
+                                            <div class="form-group no-padding">
+                                                <div class="col-sm-7">
+                                                    <h3 class="wizard-title">Firma Bilgileri</h3>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Firma Adı</label>
+                                                <div class="col-sm-6">
+                                                    {{ form.company_name(class='form-control', placeholder="Firma Adını Giriniz") }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Adınız ve Soyadınız</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" placeholder="Ad ve Soyad Bilgisi Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Telefon Numaranız</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" data-mask="phone" placeholder="(999) 999-9999"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Göreviniz</label>
+                                                <div class="col-sm-6">
+
+                                                    <select class="select2">
+                                                        <optgroup label="Seçiniz">
+                                                            <option value="p1">Doktor</option>
+                                                            <option value="p2">Hasta Kabul</option>
+                                                        </optgroup>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button class="btn btn-default btn-space">İptal
+                                                    </button>
+                                                    <button data-wizard="#wizard1"
+                                                            class="btn btn-primary btn-space wizard-next">
+                                                        Sonraki Adım
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div data-step="2" class="step-pane">
+                                        <form action="#" data-parsley-namespace="data-parsley-"
+                                              data-parsley-validate=""
+                                              novalidate="" class="form-horizontal group-border-dashed">
+                                            <div class="form-group no-padding">
+                                                <div class="col-sm-7">
+                                                    <h3 class="wizard-title">Kullanıcı Bilgileri</h3>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Kullanıcı Adı</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" placeholder="Kullanıcı Adı Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Email</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text"
+                                                           placeholder="Email Adresinizi Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Şifre</label>
+                                                <div class="col-sm-6">
+                                                    <input type="password" placeholder="Şifrenizi Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Şifre Doğrulama</label>
+                                                <div class="col-sm-6">
+                                                    <input type="password"
+                                                           placeholder="Şifrenizi Tekrar Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <button data-wizard="#wizard1"
+                                                            class="btn btn-default btn-space wizard-previous">
+                                                        Geri
+                                                    </button>
+                                                    <button data-wizard="#wizard1"
+                                                            class="btn btn-primary btn-space wizard-next">
+                                                        Sonraki Adım
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div data-step="3" class="step-pane">
+                                        <form action="#" data-parsley-namespace="data-parsley-"
+                                              data-parsley-validate=""
+                                              novalidate="" class="form-horizontal group-border-dashed">
+                                            <div class="form-group no-padding">
+                                                <div class="col-sm-7">
+                                                    <h3 class="wizard-title">Ödeme ve Kayıt</h3>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Kart Üzerindeki İsim</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text"
+                                                           placeholder="Kart Üzerinde Yazan İsim ve Soyisim Bilgisini Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Kart Numarası</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text"
+                                                           placeholder="Kart Numaranızı Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Son Kullanma Tarihi</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" data-mask="date" placeholder="AA/YYYY"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Güvenlik Kodu</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text"
+                                                           placeholder="Kartın Arka Yüzünde Bulunan Son 3 Rakamı Giriniz"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Tutar</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" placeholder=""
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group xs-pt-10">
+                                                <div class="be-checkbox">
+                                                    <input type="checkbox" id="remember">
+                                                    <label class="col-sm-6 control-label" for="remember">By creating an account, you agree the <a
+                                                            href="#">terms and conditions</a>.</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <button data-wizard="#wizard1"
+                                                            class="btn btn-default btn-space wizard-previous">
+                                                        Geri
+                                                    </button>
+                                                    <button data-wizard="#wizard1"
+                                                            class="btn btn-success btn-space wizard-next">
+                                                        Kayıt Ol
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<
+
+<script src="assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/main.js" type="text/javascript"></script>
+<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/lib/fuelux/js/wizard.js" type="text/javascript"></script>
+<script src="assets/lib/select2/js/select2.min.js" type="text/javascript"></script>
+<script src="assets/lib/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
+<script src="assets/js/app-form-wizard.js" type="text/javascript"></script>
+<script src="assets/lib/jquery.maskedinput/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="assets/js/app-form-masks.js" type="text/javascript"></script>
+<script src="assets/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
+<script type="text/javascript">
+      $.fn.niftyModal('setDefaults',{
+      	overlaySelector: '.modal-overlay',
+      	closeSelector: '.modal-close',
+      	classAddAfterOpen: 'modal-show',
+      });
+
+      $(document).ready(function(){
+      	//initialize the javascript
+      	App.init();
+      	App.masks();
+      	App.wizard();
+      });
+
+
+
+</script>
+
+</body>
+</html>

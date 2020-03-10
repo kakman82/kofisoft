@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/img/logo-fav.png">
+    <title>Şifre Sıfırlama</title>
+    <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+  </head>
+  <body class="be-splash-screen">
+    <div class="be-wrapper be-login">
+      <div class="be-content">
+        <div class="main-content container-fluid">
+          <div class="splash-container forgot-password">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+              <div class="panel-heading"><img src="assets/img/logo-xx.png" alt="logo" width="102" height="27" class="logo-img"><span class="splash-description">Şifrenizi mi unuttunuz?</span></div>
+              <div class="panel-body">
+
+                        {% with messages = get_flashed_messages(category_filter=["primary"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div role="alert" class="alert alert-contrast alert-primary alert-dismissible">
+                                        <div class="icon"><span class="mdi mdi-info-outline"></span></div>
+                                    <div class="message">
+                                        <button type="button" data-dismiss="alert" aria-label="Close" class="close"><span
+                                                aria-hidden="true" class="mdi mdi-close"></span></button>
+                                        {{ message }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+
+
+                <form action="" method="post" novalidate="">
+                    {{ form.hidden_tag() }}
+                  <p>Şifre sıfırlama linki email adresinize gönderilecektir.</p>
+                  <div class="form-group xs-pt-20">
+                    <input type="email" name="email" required="" placeholder="Email Adresinizi Giriniz" autocomplete="off" class="form-control">
+                      {% for error in form.email.errors %}
+                        <ul class="parsley-errors-list filled" id="parsley-id-5">
+                            <li class="parsley-required">{{ error }}</li>
+                        </ul>
+                      {% endfor %}
+                  </div>
+                  <p class="xs-pt-5 xs-pb-20">Email adresinizi hatırlamıyor musunuz? <a href="#">Destek için tıkla</a>.</p>
+                  <div class="form-group xs-pt-5">
+                    <button type="submit" class="btn btn-block btn-primary btn-xl">Şifremi Sıfırla</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="splash-footer">&copy; 2020 KofiSoft</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="assets/js/main.js" type="text/javascript"></script>
+    <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+      	//initialize the javascript
+      	App.init();
+
+      });
+    </script>
+  </body>
+</html>

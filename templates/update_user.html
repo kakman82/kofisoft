@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block page_title %} Kullanıcı Bilgi Güncelleme {% endblock %}
+
+{% block title %} Kullanıcı Güncelle {% endblock %}
+
+{% block page_head_title %} Kullanıcı Bilgi Güncelleme {% endblock %}
+
+{% block url %} {{ url_for('user_list') }} {% endblock %}
+
+{% block page %} Kullanıcı İşlemleri {% endblock %}
+
+{% block page_header %} Kullanıcı Güncelleme {% endblock %}
+
+{% block link %}
+
+<link rel="stylesheet" type="text/css"
+      href="{{ url_for('static', filename='lib/perfect-scrollbar/css/perfect-scrollbar.min.css') }}"/>
+<link rel="stylesheet" type="text/css"
+      href="{{ url_for('static', filename='lib/material-design-icons/css/material-design-iconic-font.min.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css"/>
+
+{% endblock link %}
+
+{% block body %}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Kullanıcı Bilgi Güncelleme Kayıt Formu<span
+                        class="panel-subtitle">Lütfen kullanıcının güncellemek istediğiniz bilgilerini giriniz.</span></div>
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <form action="{{ url_for('update_user', id=user.user_id) }}" method="POST" novalidate="">
+                            {{ form.hidden_tag() }}
+                            <div class="col-sm-6">
+                                <div class=" form-group">
+                                    <label>Adı ve Soyadı:</label>
+                                    {{ form.name(**{"class":"form-control", "placeholder":"Ad Soyad"}) }}
+                                    {% for error in form.name.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}.</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Görevi:</label>
+                                    {{ form.role(class="form-control") }}
+                                    {% for error in form.role.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}.</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email Adresi:</label>
+                                    {{ form.email(**{"class":"form-control", "placeholder":"ad@example.com"}) }}
+                                    {% for error in form.email.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}.</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Telefon Numarası:</label>
+                                    {{ form.mobile_phone(**{"data-mask":"phone", "class":"form-control", "placeholder":"0 (999) 999-9999" }) }}
+                                    {% for error in form.mobile_phone.errors %}
+                                    <ul class="parsley-errors-list filled" id="parsley-id-5">
+                                        <li class="parsley-required">{{ error }}.</li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="text-right">
+                                    <a href="{{ url_for('user_list') }}">
+                                        <button  type="button"
+                                                class="btn btn-space btn-default">Geri Gön</button>
+                                    </a>
+                                    <button type="submit" name="save" class="btn btn-space btn-primary">Kaydet</button>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock body %}
+
+{% block script %}
+
+<script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/bootstrap/dist/js/bootstrap.min.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/jquery.nestable/jquery.nestable.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/moment.js/min/moment.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/select2/js/select2.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/bootstrap-slider/js/bootstrap-slider.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/app-form-elements.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='lib/jquery.maskedinput/jquery.maskedinput.min.js') }}"
+        type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/app-form-masks.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+      $(document).ready(function(){
+      	//initialize the javascript
+      	App.init();
+      	App.formElements();
+      	App.masks();
+      });
+
+
+</script>
+
+{% endblock script %}
+
+
+
+
