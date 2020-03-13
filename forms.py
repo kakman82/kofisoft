@@ -133,7 +133,7 @@ class PatientForm(FlaskForm):
 
 
 class AppointmentForm(FlaskForm):
-    doctor = QuerySelectField(query_factory=doctor_query, allow_blank=True, get_label='user_name',
+    doctor = QuerySelectField(query_factory=User.doctor_query, allow_blank=True, get_label='user_name',
                               validators=[DataRequired(message="Lütfen doktor seçimi yapınız.")])
 
     patient = StringField()

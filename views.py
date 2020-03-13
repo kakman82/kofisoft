@@ -719,8 +719,6 @@ def add_examination(app_id):
 
     else:
         ex_form.content.data = current_examination.content
-        print("ex_form error:", ex_form.errors)
-        print("file_form error:", file_form.errors)
 
     patient_files = File.query.filter(File.patient_id == patient.patient_id).all()
 

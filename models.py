@@ -34,8 +34,8 @@ class User(db.Model):
         return self.user_name
 
 
-def doctor_query():
-    return User.query.all()
+    def doctor_query():
+        return User.query.all()
 
 
 class Company(db.Model):
