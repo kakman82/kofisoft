@@ -164,9 +164,8 @@ def add_patient():
 
     if request.method == 'POST' and form.validate_on_submit():
 
-        locale.setlocale(locale.LC_ALL, 'tr_tr')
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         dogtar = form.birthday.data
-        print(dogtar)
         str_dogtar = datetime.strptime(dogtar, '%d %B %Y')
         db_dogtar = datetime.strftime(str_dogtar, '%Y-%m-%d')
 
@@ -273,7 +272,7 @@ def update_patient(id):
         #POST request ise --> update için form
         patient = Patient.query.filter_by(patient_id=id).first()
 
-        locale.setlocale(locale.LC_ALL, 'tr_tr')
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         dogtar = form.birthday.data
         str_dogtar = datetime.strptime(dogtar, '%d %B %Y')
         db_dogtar = datetime.strftime(str_dogtar, '%Y-%m-%d')
@@ -357,7 +356,7 @@ def add_appointment(pat_id):
 
     if request.method == 'POST'and form.validate_on_submit():
 
-        locale.setlocale(locale.LC_ALL, 'tr_tr')
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         date = form.appointment_date.data
         duration = form.duration.data
 
@@ -429,7 +428,7 @@ def appointment_list():
     if not user:
         return redirect(url_for("home"))
 
-    locale.setlocale(locale.LC_ALL, 'tr_tr')
+    locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
     month_id=datetime.today().month
     day_id = datetime.today().day
     now = datetime.now()
@@ -568,7 +567,7 @@ def update_appointment(id):
         form.patient.data = current_patient_name
         form.type.data = current_appointment.type
 
-        locale.setlocale(locale.LC_ALL, 'tr_tr')
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         pretty_date = datetime.strftime(current_appointment.start_time, "%d %B %Y %A - %H:%M")
         form.appointment_date.data = pretty_date
         form.duration.data = current_appointment.duration
@@ -578,7 +577,7 @@ def update_appointment(id):
 
     if request.method == 'POST' and form.validate_on_submit():
 
-        locale.setlocale(locale.LC_ALL, 'tr_tr')
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         date = form.appointment_date.data
         duration = form.duration.data
 
@@ -647,14 +646,14 @@ def add_examination(app_id):
 
     def patient_age_info(str_date):
 
-        locale.setlocale(locale.LC_ALL, 'tr_tr')
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         str_date = datetime.strptime(patient.birthday, '%Y-%m-%d')
         year_str_date = datetime.strftime(str_date, '%Y')
         int_date = int(year_str_date)
         age = datetime.now().year - int_date
         return age
 
-    locale.setlocale(locale.LC_ALL, 'tr_tr')
+    locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
     str_birthday = datetime.strptime(patient.birthday, '%Y-%m-%d')
     pretty_date = datetime.strftime(str_birthday, '%d %B %Y')
             

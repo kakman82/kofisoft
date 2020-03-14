@@ -7,7 +7,7 @@ from flask_mail import Mail
 app = Flask(__name__, static_folder='assets')
 app.config['SECRET_KEY'] = b"\xb8Qh\xe1YtzA\x07\x9b\xa7_\x8e'\xbdy\xc1\x87\x1eJ\xbc\xcf^\x9e"
 
-ENV = 'prod'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True

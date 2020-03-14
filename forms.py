@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, \
     IntegerField, TextAreaField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from models import *
 
 
@@ -111,7 +111,7 @@ class UserForm(FlaskForm):
 
 class PatientForm(FlaskForm):
 
-    tckn = StringField(validators=[
+    tckn = StringField(validators=[Optional(),
         Length(min=11, max=11, message="En az 11 karakter içermelidir.")])
 
     name = StringField(validators=[
