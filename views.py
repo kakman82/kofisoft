@@ -250,6 +250,7 @@ def update_patient(id):
 
         patient = db.session.query(Patient).filter(Patient.patient_id == id).first()
 
+        locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
         str_dogtar = datetime.strptime(patient.birthday, '%Y-%m-%d')
         view_dogtar = datetime.strftime(str_dogtar, '%d %B %Y')
 
