@@ -296,7 +296,7 @@ def update_patient(id):
 
         return redirect(url_for("patient_list", form=form))
 
-    return render_template("update_patient.html", days_left=remaining_day)
+    return render_template("update_patient.html", days_left=remaining_day, form=form)
 
 
 @app.route("/patient/delete/<int:id>", methods=['POST'])
