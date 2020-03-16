@@ -109,6 +109,14 @@
       	App.masks();
       });
 
+       $('.sidebar-elements a').each(function () {
+                $(this).parent().removeClass('active');
+                if (window.location.href == this.href) {
+                    $(this).parent().addClass('active');
+                    $(this).parent().parent().parent().addClass('open');
+                }
+            });
+
 </script>
 
 {% endblock script %}

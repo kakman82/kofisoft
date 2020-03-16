@@ -240,7 +240,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="profile5" class="tab-pane active cont">
+                    <div id="profile5" class="tab-pane cont">
                         <div class="row">
                             <div class="panel-heading panel-heading-divider">Muayene/Kontrol Bilgileri<span
                                     class="panel-subtitle">Aşağıdaki metin kutusunu kullanarak kayıt oluşturabilirsiniz.</span>
@@ -457,6 +457,14 @@
          text: 'Dosya Seç'
        });
       });
+
+        $('.sidebar-elements a').each(function () {
+                $(this).parent().removeClass('active');
+                if (window.location.href == this.href) {
+                    $(this).parent().addClass('active');
+                    $(this).parent().parent().parent().addClass('open');
+                }
+            });
 
 
 </script>

@@ -3,6 +3,9 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
 class User(db.Model):
+
+    __tablename__ = 'users'
+
     user_id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50))
     role = db.Column(db.String(20), )
@@ -33,7 +36,7 @@ class User(db.Model):
     def __str__(self):
         return self.user_name
 
-
+    @staticmethod
     def doctor_query():
         return User.query.all()
 

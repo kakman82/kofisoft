@@ -34,7 +34,7 @@
                             <span class="splash-title xs-pb-20">Kayıt Ol</span>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    {{ form.company_name(**{"class":"form-control", "placeholder":"Firma Adı" }) }}
+                                    {{ form.company_name(**{"class":"form-control", "placeholder":"Firma Adı", "autocomplete":"off" }) }}
                                     {% for error in form.company_name.errors %}
                                     <ul class="parsley-errors-list filled" id="parsley-id-5">
                                         <li class="parsley-required">{{ error }}</li>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-8">
-                                    {{ form.name(**{"class":"form-control", "placeholder":"Ad ve Soyad" }) }}
+                                    {{ form.name(**{"class":"form-control", "placeholder":"Ad ve Soyad", "autocomplete":"off" }) }}
                                     {% for error in form.name.errors %}
                                     <ul class="parsley-errors-list filled" id="parsley-id-5">
                                         <li class="parsley-required">{{ error }}</li>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    {{ form.email(**{"class":"form-control", "placeholder":"Email" }) }}
+                                    {{ form.email(**{"class":"form-control", "placeholder":"Email", "autocomplete":"off" }) }}
                                     {% for error in form.email.errors %}
                                     <ul class="parsley-errors-list filled" id="parsley-id-5">
                                         <li class="parsley-required">{{ error }}</li>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {{ form.mobile_phone(**{"data-mask":"phone", "class":"form-control", "placeholder":"Telefon: 0 (999) 999-9999" }) }}
+                                {{ form.mobile_phone(**{"data-mask":"phone", "class":"form-control", "placeholder":"Telefon: 0 (999) 999-9999", "autocomplete":"off" }) }}
                                 {% for error in form.mobile_phone.errors %}
                                 <ul class="parsley-errors-list filled" id="parsley-id-5">
                                     <li class="parsley-required">{{ error }}</li>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group row signup-password">
                                 <div class="col-xs-6">
-                                    {{ form.password(**{"class":"form-control", "placeholder":"Şifre" }) }}
+                                    {{ form.password(**{"class":"form-control", "placeholder":"Şifre", "autocomplete":"off"}) }}
                                     {% for error in form.password.errors %}
                                     <ul class="parsley-errors-list filled" id="parsley-id-5">
                                         <li class="parsley-required">{{ error }}</li>
@@ -88,7 +88,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="col-xs-6">
-                                    {{ form.confirm(**{"class":"form-control", "placeholder":"Şifre (Tekrar)" }) }}
+                                    {{ form.confirm(**{"class":"form-control", "placeholder":"Şifre (Tekrar)","autocomplete":"off" }) }}
                                     {% for error in form.confirm.errors %}
                                     <ul class="parsley-errors-list filled" id="parsley-id-5">
                                         <li class="parsley-required">{{ error }}</li>

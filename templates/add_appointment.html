@@ -164,8 +164,6 @@
       	App.pageCalendar();
         });
 
-
-
         $.fn.datetimepicker.defaults.language = 'tr';
 
         $(this).datetimepicker({
@@ -173,6 +171,14 @@
                         weekStart: 2,
                         language: 'tr'
                     });
+
+         $('.sidebar-elements a').each(function () {
+                $(this).parent().removeClass('active');
+                if (window.location.href == this.href) {
+                    $(this).parent().addClass('active');
+                    $(this).parent().parent().parent().addClass('open');
+                }
+            });
 
 </script>
 

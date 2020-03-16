@@ -42,7 +42,7 @@ def register():
         new_registered_user = User(user_name=form.name.data,
                                    role=form.role.data,
                                    is_admin=True,
-                                   user_email=form.email.data,
+                                   user_email=form.email.data.lower(),
                                    user_phone=form.mobile_phone.data,
                                    password=generate_password_hash(form.password.data),
                                    created_date=datetime.now(),
@@ -52,7 +52,13 @@ def register():
         db.session.add(new_registered_user)
         db.session.commit()
 
-        return redirect(url_for('login'))
+        session['user'] = new_registered_user.user_name
+        session['company'] = new_registered_user.company_id
+        session['user_id'] = new_registered_user.user_id
+        session['role'] = new_registered_user.role
+        flash("Uygulamaya Hoşgeldiniz", category="success")
+
+        return redirect(url_for("dashboard"))
 
     else:
         print(form.errors)
@@ -68,7 +74,7 @@ def login():
 
     if request.method == 'POST':
 
-        user_result = User.query.filter_by(user_email=form.email.data).first()
+        user_result = User.query.filter_by(user_email=form.email.data.lower()).first()
 
         if user_result and check_password_hash(user_result.password, form.password.data):
 
@@ -363,6 +369,7 @@ def add_appointment(pat_id):
 
         str_date = datetime.strptime(date, '%d %B %Y %A - %H:%M')
         db_start_date = datetime.strftime(str_date, '%Y-%m-%d %H:%M')
+
         end_date = str_date + timedelta(minutes=duration)
         db_end_date = datetime.strftime(end_date, '%Y-%m-%d %H:%M')
 
